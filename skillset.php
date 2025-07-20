@@ -1,7 +1,7 @@
 <?php
 require 'db.php';
 
-// Handle Create (Add Skill)
+
 if (isset($_POST['add_skill'])) {
     $alumniID = $_POST['alumniID'];
     $skill = $_POST['skill'];
@@ -11,11 +11,11 @@ if (isset($_POST['add_skill'])) {
     $stmt = $pdo->prepare("INSERT INTO skillset (alumniID, skill, proficiency, description) VALUES (?, ?, ?, ?)");
     $stmt->execute([$alumniID, $skill, $proficiency, $description]);
 
-    header("Location: skillset.php"); // Refresh to show updated list
+    header("Location: skillset.php"); 
     exit;
 }
 
-// Handle Update Skill
+
 if (isset($_POST['update_skill'])) {
     $SID = $_POST['SID'];
     $alumniID = $_POST['alumniID'];
@@ -30,7 +30,7 @@ if (isset($_POST['update_skill'])) {
     exit;
 }
 
-// Handle Delete Skill
+
 if (isset($_GET['delete'])) {
     $SID = $_GET['delete'];
     $stmt = $pdo->prepare("DELETE FROM skillset WHERE SID = ?");
@@ -40,11 +40,11 @@ if (isset($_GET['delete'])) {
     exit;
 }
 
-// Fetch all skillsets to display
+
 $stmt = $pdo->query("SELECT * FROM skillset ORDER BY SID");
 $skills = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// If editing, get skill info for the form
+
 $editSkill = null;
 if (isset($_GET['edit'])) {
     $SID = $_GET['edit'];
@@ -60,8 +60,8 @@ if (isset($_GET['edit'])) {
     <meta charset="UTF-8" />
     <title>Skillset Management</title>
     <style>
-        /* Paste your KSU CSS here or link an external stylesheet */
-        /* For demo, minimal styling */
+        
+        
         table { border-collapse: collapse; width: 90%; margin: 20px auto; background: #fff; }
         th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
         th { background: #000; color: #ffb700; }
@@ -136,7 +136,7 @@ if (isset($_GET['edit'])) {
 <style>
     .ksu-back-link {
         display: inline-block;
-        background-color: #FFC61E; /* KSU Gold */
+        background-color: #FFC61E; 
         color: #000;
         font-weight: bold;
         padding: 10px 16px;
@@ -153,7 +153,7 @@ if (isset($_GET['edit'])) {
     }
 </style>
 
-<!-- This goes at the bottom inside <body> -->
+
 <div style="text-align: center; margin: 30px 0;">
     <a href="index.php" class="ksu-back-link">&#8592;&nbsp;&nbsp;Back to Home</a>
 </div>
